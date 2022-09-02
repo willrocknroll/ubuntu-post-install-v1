@@ -31,3 +31,4 @@ sudo apt-get install google-chrome-stable -y
 
 echo "Instalando Virt-manager"
 sudo apt-get install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
+
