@@ -32,3 +32,34 @@ sudo apt-get install google-chrome-stable -y
 echo "Instalando Virt-manager"
 sudo apt-get install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
 
+echo "Instalando Unzip"
+sudo apt-get install unzip -y
+
+echo "Instalando Zip"
+sudo apt-get install zip -y
+
+echo "Instalando VS Code"
+sudo apt update
+sudo apt install -y curl apt-transport-https
+curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
+sudo apt update
+sudo apt install -y code
+sudo snap refresh
+sudo snap install code --classic
+
+echo "Instalando Keepass2"
+sudo apt-get install keepass2 -y
+
+#
+# Finalizando instalações
+#
+
+echo "Finalizando instalações"
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get autoremove -y
+sudo apt-get autoclean -y
+
+echo "Fim do Script de instalação"
+
