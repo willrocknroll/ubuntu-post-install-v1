@@ -48,8 +48,6 @@ sudo apt install -y code
 sudo snap refresh
 sudo snap install code --classic
 
-echo "Instalando Keepass2"
-sudo apt-get install keepass2 -y
 
 #
 # Finalizando instalações
