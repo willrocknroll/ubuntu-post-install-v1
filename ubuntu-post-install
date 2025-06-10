@@ -5,6 +5,7 @@
 # Autor: Willian Alves da Silva
 # E-mail: willrocknroll@gmail.com
 #
+#Atualizado em 10/06/2025
 #################################################################################################
 #
 # Atualizando o sistema #
@@ -20,6 +21,10 @@ sudo apt-get autoremove -y
 # Instalando programas
 #
 echo "Instalando programas..."
+echo "Instalando Flatpak e Gnome Software"
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 echo "Instalando Putty"
 sudo add-apt-repository universe
@@ -30,7 +35,16 @@ echo "Instalando Google Chrome"
 sudo apt-get install google-chrome-stable -y
 
 echo "Instalando Virt-manager"
-sudo apt-get install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
+sudo apt-get install ssh-askpass
+sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+sudo adduser $USER libvirt
+sudo adduser $USER kvm
+sudo systemctl status libvirtd
+sudo systemctl start libvirtd
+sudo systemctl enable libvirtd
+sudo apt install virt-manager -y
+sudo systemctl status libvirtd
+
 
 echo "Instalando Unzip"
 sudo apt-get install unzip -y
