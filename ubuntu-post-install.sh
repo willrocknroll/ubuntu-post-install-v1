@@ -68,6 +68,7 @@ flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub org.keepassxc.KeePassXC -y
 flatpak install flathub io.github.vikdevelop.SaveDesktop -y
 flatpak install flathub com.obsproject.Studio -y
+flatpak install flathub com.visualstudio.code
 
 #
 # Finalizando instalações
