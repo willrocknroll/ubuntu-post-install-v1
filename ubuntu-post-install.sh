@@ -1,11 +1,11 @@
 #!/bin/bash
 #
 # Script para atualizar o sistema e instalar programas após a instalação do Ubuntu e derivados.
-# Agora com menus interativos para seleção de programas.
+# Agora com menus interativos para seleção de programas e submenu de Flatpaks.
 #
 # Autor: Willian Alves da Silva
 # E-mail: willrocknroll@gmail.com
-# Atualizado em 10/06/2025 (Adaptado para menu interativo em 02/07/2025)
+# Atualizado em 10/06/2025 (Adaptado para menu interativo em 02/07/2025 e submenu Flatpak em 05/07/2025)
 #################################################################################################
 
 # Função para exibir mensagens de status
@@ -86,25 +86,134 @@ function install_git {
     log_message "Git instalado."
 }
 
-function install_flatpak_apps {
-    log_message "Instalando programas em FlatPak (pode demorar)..."
-    flatpak install flathub com.mattjakeman.ExtensionManager -y
-    flatpak install flathub com.google.Chrome -y
-    flatpak install flathub com.microsoft.Edge -y
-    flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
-    flatpak install flathub org.qbittorrent.qBittorrent -y
-    flatpak install flathub com.discordapp.Discord -y
-    flatpak install flathub org.videolan.VLC -y
-    flatpak install flathub io.github.shiftey.Desktop -y # GitHub Desktop
-    flatpak install flathub io.github.thetumultuousunicornofdarkness.cpu-x -y
-    flatpak install flathub org.angryip.ipscan -y
-    flatpak install flathub md.obsidian.Obsidian -y
-    flatpak install flathub org.keepassxc.KeePassXC -y
-    flatpak install flathub io.github.vikdevelop.SaveDesktop -y
-    flatpak install flathub com.obsproject.Studio -y # OBS Studio
-    flatpak install flathub com.visualstudio.code -y # VS Code via Flatpak
-    log_message "Programas FlatPak instalados."
+# Submenu para Flatpaks
+function flatpak_submenu {
+    local choice
+    while true; do
+        clear
+        echo "================================================"
+        echo "  Submenu de Instalação de Flatpaks             "
+        echo "================================================"
+        echo "1. Extension Manager"
+        echo "2. Google Chrome (Flatpak)"
+        echo "3. Microsoft Edge (Flatpak)"
+        echo "4. Teams for Linux (Flatpak)"
+        echo "5. qBittorrent (Flatpak)"
+        echo "6. Discord (Flatpak)"
+        echo "7. VLC (Flatpak)"
+        echo "8. GitHub Desktop (Flatpak)"
+        echo "9. CPU-X (Flatpak)"
+        echo "10. Angry IP Scanner (Flatpak)"
+        echo "11. Obsidian (Flatpak)"
+        echo "12. KeePassXC (Flatpak)"
+        echo "13. SaveDesktop (Flatpak)"
+        echo "14. OBS Studio (Flatpak)"
+        echo "15. VS Code (Flatpak)"
+        echo "99. Instalar TODOS os Flatpaks da lista"
+        echo "0. Voltar ao Menu Principal"
+        echo "================================================"
+        read -p "Escolha uma ou mais opções (separe por espaço): " choice
+
+        IFS=' ' read -r -a choices_array <<< "$choice"
+
+        for opt in "${choices_array[@]}"; do
+            case $opt in
+                1)
+                    log_message "Instalando Extension Manager (Flatpak)..."
+                    flatpak install flathub com.mattjakeman.ExtensionManager -y
+                    log_message "Extension Manager instalado."
+                    ;;
+                2)
+                    log_message "Instalando Google Chrome (Flatpak)..."
+                    flatpak install flathub com.google.Chrome -y
+                    log_message "Google Chrome (Flatpak) instalado."
+                    ;;
+                3)
+                    log_message "Instalando Microsoft Edge (Flatpak)..."
+                    flatpak install flathub com.microsoft.Edge -y
+                    log_message "Microsoft Edge (Flatpak) instalado."
+                    ;;
+                4)
+                    log_message "Instalando Teams for Linux (Flatpak)..."
+                    flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
+                    log_message "Teams for Linux (Flatpak) instalado."
+                    ;;
+                5)
+                    log_message "Instalando qBittorrent (Flatpak)..."
+                    flatpak install flathub org.qbittorrent.qBittorrent -y
+                    log_message "qBittorrent (Flatpak) instalado."
+                    ;;
+                6)
+                    log_message "Instalando Discord (Flatpak)..."
+                    flatpak install flathub com.discordapp.Discord -y
+                    log_message "Discord (Flatpak) instalado."
+                    ;;
+                7)
+                    log_message "Instalando VLC (Flatpak)..."
+                    flatpak install flathub org.videolan.VLC -y
+                    log_message "VLC (Flatpak) instalado."
+                    ;;
+                8)
+                    log_message "Instalando GitHub Desktop (Flatpak)..."
+                    flatpak install flathub io.github.shiftey.Desktop -y
+                    log_message "GitHub Desktop (Flatpak) instalado."
+                    ;;
+                9)
+                    log_message "Instalando CPU-X (Flatpak)..."
+                    flatpak install flathub io.github.thetumultuousunicornofdarkness.cpu-x -y
+                    log_message "CPU-X (Flatpak) instalado."
+                    ;;
+                10)
+                    log_message "Instalando Angry IP Scanner (Flatpak)..."
+                    flatpak install flathub org.angryip.ipscan -y
+                    log_message "Angry IP Scanner (Flatpak) instalado."
+                    ;;
+                11)
+                    log_message "Instalando Obsidian (Flatpak)..."
+                    flatpak install flathub md.obsidian.Obsidian -y
+                    log_message "Obsidian (Flatpak) instalado."
+                    ;;
+                12)
+                    log_message "Instalando KeePassXC (Flatpak)..."
+                    flatpak install flathub org.keepassxc.KeePassXC -y
+                    log_message "KeePassXC (Flatpak) instalado."
+                    ;;
+                13)
+                    log_message "Instalando SaveDesktop (Flatpak)..."
+                    flatpak install flathub io.github.vikdevelop.SaveDesktop -y
+                    log_message "SaveDesktop (Flatpak) instalado."
+                    ;;
+                14)
+                    log_message "Instalando OBS Studio (Flatpak)..."
+                    flatpak install flathub com.obsproject.Studio -y
+                    log_message "OBS Studio (Flatpak) instalado."
+                    ;;
+                15)
+                    log_message "Instalando VS Code (Flatpak)..."
+                    flatpak install flathub com.visualstudio.code -y
+                    log_message "VS Code (Flatpak) instalado."
+                    ;;
+                99)
+                    log_message "Instalando TODOS os programas FlatPak (pode demorar)..."
+                    flatpak install flathub com.mattjakeman.ExtensionManager com.google.Chrome com.microsoft.Edge com.github.IsmaelMartinez.teams_for_linux org.qbittorrent.qBittorrent com.discordapp.Discord org.videolan.VLC io.github.shiftey.Desktop io.github.thetumultuousunicornofdarkness.cpu-x org.angryip.ipscan md.obsidian.Obsidian org.keepassxc.KeePassXC io.github.vikdevelop.SaveDesktop com.obsproject.Studio com.visualstudio.code -y
+                    log_message "TODOS os programas FlatPak instalados."
+                    ;;
+                0)
+                    log_message "Voltando ao Menu Principal..."
+                    return # Sai da função do submenu
+                    ;;
+                *)
+                    echo "Opção inválida: $opt. Por favor, tente novamente."
+                    sleep 2
+                    ;;
+            esac
+        done
+        echo "" # Adiciona uma linha em branco para melhor leitura
+        echo "Pressione Enter para continuar com o submenu Flatpak..."
+        read -s -n 1 # Espera qualquer tecla
+    done
 }
+
 
 # Menu principal
 function main_menu {
@@ -122,7 +231,7 @@ function main_menu {
         echo "6. Instalar Zip"
         echo "7. Instalar Ajustes do Gnome"
         echo "8. Instalar Git"
-        echo "9. Instalar TODOS os programas FlatPak"
+        echo "9. Entrar no submenu de Flatpaks" # Opção para o submenu
         echo "0. Sair e finalizar o script"
         echo "================================================"
         read -p "Escolha uma ou mais opções (separe por espaço): " choice
@@ -157,7 +266,7 @@ function main_menu {
                     install_git
                     ;;
                 9)
-                    install_flatpak_apps
+                    flatpak_submenu # Chama o submenu Flatpak
                     ;;
                 0)
                     log_message "Saindo do script. Finalizando instalações..."
@@ -175,12 +284,11 @@ function main_menu {
             esac
         done
         echo "" # Adiciona uma linha em branco para melhor leitura
-        echo "Pressione Enter para continuar com o menu..."
+        echo "Pressione Enter para continuar com o menu principal..."
         read -s -n 1 # Espera qualquer tecla
     done
 }
 
 # Inicia o menu principal
 main_menu
-
 
